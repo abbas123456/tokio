@@ -8,7 +8,7 @@ from sqlmodel import Session
 from sqlmodel import create_engine
 from sqlmodel import select
 
-from db import Policy
+from src.db import Policy
 
 
 engine = create_engine("sqlite:///database.db", connect_args={"check_same_thread": False})
