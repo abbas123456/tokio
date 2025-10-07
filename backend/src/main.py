@@ -10,19 +10,22 @@ from sqlmodel import select
 
 from src.db import Policy
 
-
+# Create a SQLite database engine
 engine = create_engine("sqlite:///database.db", connect_args={"check_same_thread": False})
 
+# Dependency function to provide a database session
 def get_session():
     with Session(engine) as session:
         yield session
 
 
+# Type alias for injected DB session
 SessionDep = Annotated[Session, Depends(get_session)]
 
-app = FastAPI()
+# Create FastAPI application instance
+app = FastAPI()  
 
-
+# API Endpoint to get list of policies with pagination
 @app.get("/")
 def read_policies(
     session: SessionDep,
@@ -32,7 +35,7 @@ def read_policies(
     policies = session.exec(select(Policy).offset(offset).limit(limit)).all()
     return policies
 
-
+# API Endpoint to get a specific policy by ID
 @app.get("/policies/{policy_id}")
 def read_policy(policy_id: int, session: SessionDep) -> Policy:
     policy = session.get(Policy, policy_id)
