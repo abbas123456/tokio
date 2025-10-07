@@ -48,3 +48,14 @@ $ npm run dev
 ```
 
 This will start a node server on http://0.0.0.0:3000 ready to be browsed.
+
+
+# Usage instructions
+
+## Browsing policies
+
+Navigate to http://0.0.0.0:3000 to see all policies in the system listed in a table in a condensed form with some fields listed. 
+
+Clicking the view icon on each row in the table will take you to a more detailed page for the policy with all fields shown.
+
+Once on a detailed page, click the back button in the browser to be taken back to the overview page showing all policies.
