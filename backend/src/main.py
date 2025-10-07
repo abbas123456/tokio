@@ -29,13 +29,13 @@ def read_policies(
     offset: int = 0,
     limit: Annotated[int, Query(le=100)] = 100,
 ) -> list[Policy]:
-    heroes = session.exec(select(Policy).offset(offset).limit(limit)).all()
-    return heroes
+    policies = session.exec(select(Policy).offset(offset).limit(limit)).all()
+    return policies
 
 
 @app.get("/policies/{policy_id}")
-def read_hero(policy_id: int, session: SessionDep) -> Policy:
-    hero = session.get(Policy, policy_id)
-    if not hero:
+def read_policy(policy_id: int, session: SessionDep) -> Policy:
+    policy = session.get(Policy, policy_id)
+    if not policy:
         raise HTTPException(status_code=404, detail="Policy not found")
-    return hero
+    return policy
